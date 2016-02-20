@@ -1,18 +1,16 @@
-% TEST - modified mid-point rule
+% TEST - Bulirsch-Stoer Integration method
 %
-% This is a script that tests to make sure that the modified mid-point rule
-% is working properly. This method is
 
-tSpan = [0,5];   % Time span
+tSpan = [0,50];   % Time span
 
 z0 = [0.3; 2.5];   %Initial state
 
 % Dynamical system - driven damped pendulum
 dynFun = @(t,z)( [z(2,:);  cos(t) - 0.1*z(2,:) - sin(z(1,:))] );
 
-% Test the modified mid-point method
+% Test the bulirsch-stoer method
 tol = 1e-14;
-t = linspace(tSpan(1), tSpan(2), 50);
+t = linspace(tSpan(1), tSpan(2), 20);
 [z, info] = BulirschStoer(dynFun,t,z0,tol);
 
 % Accurately solve using ode45:
